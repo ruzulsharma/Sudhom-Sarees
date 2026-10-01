@@ -2,20 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: auto;
+/* ─────────────────────────────────────────────────────────────
+   SUDHOM — Banarasi Heritage Design System
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --crimson:      #9B1C1C;
+  --crimson-mid:  #B91C1C;
+  --gold:         #C9973A;
+  --gold-light:   #E8B84B;
+  --gold-deep:    #9A6F2A;
+  --ink:          #12050A;
+  --parchment:    #FAF3E7;
+  --ivory:        #FFFDF7;
+  --silk:         #EAD5B0;
 }
 
+html { scroll-behavior: auto; }
+
 body {
-  background-color: #f5f5f3;
-  color: #111111;
+  background-color: var(--ink);
+  color: var(--ivory);
   overscroll-behavior: none;
 }
 
-* {
-  -webkit-tap-highlight-color: transparent;
+* { -webkit-tap-highlight-color: transparent; }
+img { -webkit-user-drag: none; }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #12050A; }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 4px; }
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection { background: rgba(201,151,58,0.22); color: var(--ivory); }
+
+/* ── Gold zari shimmer text ───────────────────────────────── */
+.text-zari {
+  background: linear-gradient(
+    90deg,
+    #9A6F2A 0%, #E8B84B 25%, #C9973A 50%, #E8B84B 75%, #9A6F2A 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: zari-shine 3.5s linear infinite;
 }
 
-img {
-  -webkit-user-drag: none;
+@keyframes zari-shine {
+  to { background-position: -200% center; }
 }
+
+/* ── Thin gold top rule on cards ─────────────────────────── */
+.gold-rule::before {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  margin-bottom: 0;
+}
+
+/* ── Arched clip for "Six Moods" cards ───────────────────── */
+.arch-clip {
+  clip-path: path("M 0 40 Q 0 0 50 0 Q 100 0 100 40 L 100 100 L 0 100 Z");
+}
+
+/* ── Full-bleed section helper ───────────────────────────── */
+.section-dark {
+  background: linear-gradient(180deg, #12050A 0%, #1C0A0A 100%);
+}
+
+.section-parchment {
+  background: linear-gradient(180deg, #FAF3E7 0%, #F5EDD8 100%);
+}
+
+/* ── Ticket-tape / marquee strip ─────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+/* ── Wave divider between sections ───────────────────────── */
+.wave-divider {
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* ── Overlay gradient utility ────────────────────────────── */
+.overlay-dark {
+  background: linear-gradient(180deg, transparent 30%, rgba(12,5,10,0.88) 100%);
+}
+
+.overlay-side {
+  background: linear-gradient(90deg, rgba(12,5,10,0.85) 0%, rgba(12,5,10,0.4) 55%, transparent 100%);
+}
+
+/* ── Badge pill ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.badge-gold    { background: rgba(201,151,58,0.15); color: #E8B84B; border: 1px solid rgba(201,151,58,0.35); }
+.badge-crimson { background: rgba(155,28,28,0.18); color: #F87171; border: 1px solid rgba(155,28,28,0.35); }
+.badge-dark    { background: rgba(255,253,247,0.08); color: rgba(255,253,247,0.65); border: 1px solid rgba(255,253,247,0.12); }
+
+/* ── Curved Add-to-Cart button (like the screenshot) ────── */
+.cta-pill {
+  border-radius: 9999px;
+  background: var(--crimson);
+  color: var(--ivory);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 2rem 0.85rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.25s, transform 0.2s;
+}
+.cta-pill:hover { background: #B91C1C; transform: scale(1.02); }
+
+/* ── Product image hover zoom ────────────────────────────── */
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.img-zoom:hover img { transform: scale(1.07); }

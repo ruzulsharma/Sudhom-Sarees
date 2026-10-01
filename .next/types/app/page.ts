@@ -1,4 +1,4 @@
-// File: D:\Ecommerce\app\page.jsx
+// File: D:\3D\Drift-ecommerce\app\page.jsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
